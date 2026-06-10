@@ -151,3 +151,6 @@ def menu():
 
 if __name__ == "__main__":
     menu()
+
+# ERROR INTENCIONAL PARA DEMOSTRAR FALLO DE PIPELINE
+esto no es python válido
