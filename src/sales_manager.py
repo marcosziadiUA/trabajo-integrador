@@ -119,3 +119,35 @@ def procesar_reporte_ventas(path_archivo):
         print("Error: El archivo no existe.")
     
     return resumen
+
+# --- INTERFAZ DE USUARIO ---
+
+import os
+
+def menu():
+    print("\n--- SISTEMA DE GESTIÓN DE COMPRAS ---")
+    path_csv = input("Indique el path del csv: ")
+    
+    if not os.path.exists(path_csv):
+        print("El path indicado no es válido.")
+        return
+
+    esta_ordenado = input("¿El archivo está ordenado? (S/N): ").upper()
+    path_a_procesar = path_csv
+
+    if esta_ordenado == "N":
+        path_temp = "temp_ordenado.csv"
+        print("Ordenando datos...")
+        if ordenar_archivo(path_csv, path_temp):
+            path_a_procesar = path_temp
+        else:
+            print("No se pudo ordenar el archivo.")
+            return
+
+    procesar_reporte_ventas(path_a_procesar)
+
+    if esta_ordenado == "N" and os.path.exists("temp_ordenado.csv"):
+        os.remove("temp_ordenado.csv")
+
+if __name__ == "__main__":
+    menu()
