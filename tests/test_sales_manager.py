@@ -47,3 +47,19 @@ def test_procesar_reporte_valores_correctos(csv_prueba):
     # Total = 250
     assert resultado["total_sucursales"] == 2
     assert resultado["importe_general"] == 250.0
+
+# --- PRUEBAS DE ORDENAR ARCHIVO ---
+
+def test_ordenar_archivo_crea_file(tmp_path):
+    """Verifica que la función modular de ordenar cree el archivo de salida."""
+    ent = tmp_path / "suc_des.csv"
+    ent.write_text("S\nZ,P,0,0,1,10\nA,P,0,0,1,10", encoding="utf-8")
+    sal = tmp_path / "suc_ord.csv"
+    
+    exito = ordenar_archivo(str(ent), str(sal))
+    
+    assert exito is True
+    assert os.path.exists(str(sal))
+    with open(sal, 'r') as f:
+        lineas = f.readlines()
+        assert "A,P" in lineas[1]
