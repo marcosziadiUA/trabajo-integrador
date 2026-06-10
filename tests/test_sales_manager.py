@@ -19,7 +19,8 @@ def test_bubble_sort_sucursales_orden_alfabetico():
     assert bubble_sort_sucursales(entrada) == esperado
 
 def test_bubble_sort_lista_vacia():
-    assert bubble_sort_sucursales([]) == []
+    # SIMULACIÓN DE ERROR INTENCIONAL: el resultado esperado es incorrecto
+    assert bubble_sort_sucursales([]) == ["esto va a fallar"]
 
 # --- PRUEBAS DE REPORTE (CORTE DE CONTROL) ---
 
