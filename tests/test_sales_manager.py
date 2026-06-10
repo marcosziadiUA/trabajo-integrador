@@ -63,3 +63,9 @@ def test_ordenar_archivo_crea_file(tmp_path):
     with open(sal, 'r') as f:
         lineas = f.readlines()
         assert "A,P" in lineas[1]
+
+def test_procesar_reporte_archivo_inexistente():
+    """Verifica que el reporte retorna resumen vacío si el archivo no existe."""
+    resultado = procesar_reporte_ventas("archivo_que_no_existe.csv")
+    assert resultado["total_sucursales"] == 0
+    assert resultado["importe_general"] == 0.0
